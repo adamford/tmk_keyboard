@@ -1,28 +1,9 @@
 /*
-This layout was created by Jeremy Cowgar (@jcowgar) who is a programmer by trade
-that suffers from the beginning stages of RSI. As a programmer, letters, symbols
-and cursor navigation are most often used. To prevent strange finger gymnastics,
-this layout places the most common non-letter characters (found in JavaScript code)
-in the easiest to reach locations. This layout makes heavy use of momentary layer
-toggling to achieve this.
-
-The letter layout is in the QWERTY standard, but the author uses a software based map on
-OS X to achieve Colemak. THis was done because the laptop keyboard is still used from time
-to time.
-
-The 5 layers can be viewed graphically:
-
-1. Letters - http://www.keyboard-layout-editor.com/#/gists/cbed8979bba2df4419c738903a623546
-2. Symbols - http://www.keyboard-layout-editor.com/#/gists/8956a18b508a78e93b9c38ec3fcccaa5
-3. Navigation - http://www.keyboard-layout-editor.com/#/gists/6ed492b714a7f54eb1c5de09b87fd8c4
-4. Numbers - http://www.keyboard-layout-editor.com/#/gists/399ceb5624e8388e48a3a5eacac8e973
-5. Function Keys - http://www.keyboard-layout-editor.com/#/gists/7fd7dc24c7048316f3724b1893c64e89
+This layout was created by Jeremy Cowgar (@jcowgar) and tweaked by Adam Ford.
 */
 
 #include "keymap_common.h"
 
-// Undefine if you use QWERTY
-#undef SOFTWARE_COLEMAK
 
 // Reduce the time to decision of a tap or hold
 #define TAPPING_TERM 250
@@ -57,23 +38,10 @@ The 5 layers can be viewed graphically:
 #define FN_SFBS (KC_FN0 + SFBS)
 #define FN_CTET (KC_FN0 + CTET)
 
-#ifdef SOFTWARE_COLEMAK
-  // Colemak defined in software is playing games with me
-  #define KEY_SAVE KC_D
-  #define KEY_CLSE KC_W
-  #define KEY_OPEN KC_SCLN
-  #define MY_SCLN  KC_P
-#else
-  #define KEY_SAVE KC_S
-  #define KEY_CLSE KC_W
-  #define KEY_OPEN KC_O
-  #define MY_SCLN  KC_SCLN
-#endif
-
 // Some handy macros to keep the keymaps clean and easier to maintain
-#define KM_SAVE ACTION_MODS_KEY(MOD_LGUI, KEY_SAVE)    // Colemak to Qwerty in software playing games
-#define KM_CLSE ACTION_MODS_KEY(MOD_LGUI, KEY_CLSE)
-#define KM_OPEN ACTION_MODS_KEY(MOD_LGUI, KEY_OPEN) // Colemak to Qwerty in software playing games
+#define KM_SAVE ACTION_MODS_KEY(MOD_LGUI, KC_S)
+#define KM_CLSE ACTION_MODS_KEY(MOD_LGUI, KC_W)
+#define KM_OPEN ACTION_MODS_KEY(MOD_LGUI, KC_O)
 #define KM_COPY ACTION_MODS_KEY(MOD_LGUI, KC_C)
 #define KM_CUT  ACTION_MODS_KEY(MOD_LGUI, KC_X)
 #define KM_PAST ACTION_MODS_KEY(MOD_LGUI, KC_V)
@@ -93,7 +61,7 @@ The 5 layers can be viewed graphically:
 #define KC_RPRN ACTION_MODS_KEY(MOD_LSFT, KC_0)
 #define KC_UNDS ACTION_MODS_KEY(MOD_LSFT, KC_MINUS)
 #define KC_PLUS ACTION_MODS_KEY(MOD_LSFT, KC_EQL)
-#define MY_COLN ACTION_MODS_KEY(MOD_LSFT, MY_SCLN)
+#define MY_COLN ACTION_MODS_KEY(MOD_LSFT, KC_SCLN)
 #define KC_QUES ACTION_MODS_KEY(MOD_LSFT, KC_SLSH)
 #define KC_TILD ACTION_MODS_KEY(MOD_LSFT, KC_GRV)
 #define KC_PIPE ACTION_MODS_KEY(MOD_LSFT, KC_BSLS)
@@ -129,10 +97,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   {KC_TRNS, KC_TRNS, FN_BOOT, KC_LSHIFT, KC_TAB,  KM_CUT,  KM_PAST, KC_RSHIFT, KC_TRNS, KC_TRNS, KC_TRNS}
 },
 [SYMB] = {
-  {KC_BSLS, KC_EXLM, KC_LABK, KC_RABK, MY_COLN, KC_TRNS, KC_UNDS, KC_DLR,  KC_QUES, KC_TRNS, KC_PERC},
-  {KC_AT,   KC_AMPR, KC_LPRN, KC_RPRN, MY_SCLN, KC_TRNS, KC_COMM, KC_DOT,  KC_QUOT, KC_TRNS, KC_TILD},
-  {KC_HASH, KC_PIPE, KC_LCBR, KC_RCBR, KC_SLSH, KC_TRNS, KC_TRNS, KC_GRV,  KC_DQT,  KC_TRNS, KC_CIRC},
-  {KC_TRNS, KC_TRNS, KC_LBRC, KC_RBRC, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS}
+  {KC_EXLM,   KC_AT,   KC_HASH,  KC_DLR,  KC_PERC, KC_TRNS, KC_CIRC,  KC_AMPR,  KC_ASTR, KC_LPRN, KC_RPRN},
+  {KC_GRV,    KC_TILD, KC_LPRN,  KC_RPRN, KC_SCLN, KC_TRNS, KC_COMM,  KC_DOT,   KC_QUOT, KC_TRNS, KC_PIPE},
+  {KC_MINS,   KC_BSLS, KC_LCBR,  KC_RCBR, KC_SLSH, KC_TRNS, KC_LABK,  KC_RABK,   KC_DQT,  KC_TRNS, KC_QUES},
+  {KC_TRNS,   KC_TRNS, KC_LBRC,  KC_RBRC, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS}
 }};
 
 const uint16_t PROGMEM fn_actions[] = {
