@@ -13,7 +13,7 @@ Quick Start
 Install `gcc-avr` and `avrdude`.
 
     $ cd keyboard/atreus
-    $ make upload KEYMAP=qwerty USB=/dev/ttyACM0
+    $ make upload KEYMAP=adam USB=/dev/cu.usbmodem14311
     # hit the reset key on your keyboard
 
 See `keyboard/atreus/README.md` for details.
