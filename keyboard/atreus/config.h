@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#define NO_TRACK_KEY_PRESS
 
 /* USB Device descriptor parameter */
 #define VENDOR_ID       0x1209

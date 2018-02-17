@@ -1,12 +1,15 @@
 /*
 This layout was created by Jeremy Cowgar (@jcowgar) and tweaked by Adam Ford.
+To upload: make upload KEYMAP=adam USB=/dev/cu.usbmodem14311
+NO_TRACK_KEY_PRESS
 */
 
 #include "keymap_common.h"
+#include "config.h"
 
 
 // Reduce the time to decision of a tap or hold
-#define TAPPING_TERM 250
+#define TAPPING_TERM 150
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 #define BOOT  0 // Bootloader (not to be confused with default layer)
@@ -16,10 +19,11 @@ This layout was created by Jeremy Cowgar (@jcowgar) and tweaked by Adam Ford.
 #define CURS  3 // Cursor Layer
 #define SYMB  4 // Symbol Layer
 #define OPBS  5 // Option or Backspace
-#define CMET  6 // Command or Enter
+#define OPET  5 // Option or Enter
+#define CMBS  6 // Command or Backspace
 #define SFSP  7 // Right Shift or Space
-#define SFET  8 // Left Shift or Enter
-#define CTTB  9 // Control or Tab
+#define OPDL  8 // Option or Delete
+#define CMTB  9 // Command or Tab
 #define CTES 10 // Control or Escape
 #define SFBS 11 // Left shift or Backspace
 #define CTET 12 // Control or Enter
@@ -48,11 +52,11 @@ This layout was created by Jeremy Cowgar (@jcowgar) and tweaked by Adam Ford.
 #define FN_FKEY (KC_FN0 + FKEY)
 #define FN_CURS (KC_FN0 + CURS)
 #define FN_SYMB (KC_FN0 + SYMB)
-#define FN_OPBS (KC_FN0 + OPBS)
-#define FN_CMET (KC_FN0 + CMET)
+#define FN_OPET (KC_FN0 + OPET)
+#define FN_CMBS (KC_FN0 + CMBS)
 #define FN_SFSP (KC_FN0 + SFSP)
-#define FN_SFET (KC_FN0 + SFET)
-#define FN_CTTB (KC_FN0 + CTTB)
+#define FN_OPDL (KC_FN0 + OPDL)
+#define FN_CMTB (KC_FN0 + CMTB)
 #define FN_CTES (KC_FN0 + CTES)
 #define FN_SFBS (KC_FN0 + SFBS)
 #define FN_CTET (KC_FN0 + CTET)
@@ -112,8 +116,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [ALPH] = {
       {KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_TRNS, KC_Y,    KC_U,    KC_I,    KC_O,    KC_P},
       {KC_A,    FN_NUMS, FN_FKEY, KC_F,    KC_G,    KC_TRNS, KC_H,    KC_J,    FN_CURS, FN_SYMB, FN_MOUSE},
-      {KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    FN_OPBS, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH},
-      {FN_CTES, KC_LBRC, KC_RBRC, FN_CTTB, FN_SFBS, FN_CMET, FN_SFSP, FN_CTET, KC_MINS, KC_QUOT, FN_CTES}
+      {KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    FN_OPDL, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH},
+      {FN_CTES, KC_EQL, KC_GRV, FN_CMTB, FN_SFBS, FN_CTET, FN_SFSP, FN_CMTB, KC_MINS, KC_QUOT, FN_CTET}
     },
     [NUMS] = {
       {KC_TRNS, KC_TRNS, KC_TRNS, KC_ASTR, KC_SLSH, KC_TRNS, KC_TRNS, KC_7,    KC_8,    KC_9,    KC_SLSH},
@@ -128,10 +132,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS}
     },
     [CURS] = {
-      {KC_TRNS, KC_BSPC, KC_UP,   KC_DEL,  KC_PGUP, KC_TRNS, KC_TRNS, KM_SAVE, KC_TRNS, KM_OPEN, KC_TRNS},
+      {KC_TRNS, KC_BSPC, KC_UP,   KC_DEL,  KC_PGUP, KC_TRNS, KC_TRNS, KM_SAVE, KC_TRNS, KM_OPEN, FN_BOOT},
       {KC_TRNS, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, KC_TRNS, KM_UNDO, KC_LALT, KC_TRNS, KC_LGUI, KC_TRNS},
-      {KC_TRNS, KC_VOLD, KC_MUTE, KC_VOLU, KC_MPLY, KM_COPY, KM_REDO, KM_CLSE, KC_TRNS, KC_TRNS, KC_TRNS},
-      {KC_TRNS, KC_TRNS, FN_BOOT, KC_LSHIFT, KC_TAB,  KM_CUT,  KM_PAST, KC_RSHIFT, KC_TRNS, KC_TRNS, KC_TRNS}
+      {KC_TRNS, KC_VOLD, KC_MUTE, KC_VOLU, KC_MPLY, KC_TRNS, KM_REDO, KM_CLSE, KC_TRNS, KC_TRNS, KC_TRNS},
+      {KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS}
     },
     [SYMB] = {
       {KC_EXLM,   KC_AT,   KC_HASH,  KC_DLR,  KC_PERC, KC_TRNS, KC_CIRC,  KC_AMPR,  KC_ASTR, KC_LPRN, KC_RPRN},
@@ -140,9 +144,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       {KC_TRNS,   KC_TRNS, KC_LBRC,  KC_RBRC, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS}
     },
     [MOUSE] = {
-      {KC_TRNS,   KC_TRNS,   FN_MS_U,  KC_TRNS,  KC_TRNS, KC_TRNS, FN_WH_U,  FN_WH_L,  FN_WH_R, KC_TRNS, KC_TRNS},
-      {KC_TRNS,    FN_MS_L, FN_MS_D,  FN_MS_R, KC_TRNS, KC_TRNS, FN_WH_D,  FN_ACL0,   FN_ACL1, FN_ACL2, KC_TRNS},
-      {KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, FN_BTN1,  FN_BTN2,   FN_BTN3,  FN_BTN4, FN_BTN5},
+      {KC_TRNS,   FN_BTN1,   FN_MS_U,  FN_BTN2,  FN_WH_U, KC_TRNS, FN_WH_U,  FN_WH_L,  FN_WH_R, KC_TRNS, KC_TRNS},
+      {KC_TRNS,    FN_MS_L, FN_MS_D,  FN_MS_R, FN_WH_D, KC_TRNS, FN_WH_D,  FN_ACL0,   FN_ACL1, FN_ACL2, KC_TRNS},
+      {KC_TRNS,   FN_BTN3, FN_BTN4,  FN_BTN5, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,   KC_TRNS,  KC_TRNS, KC_TRNS},
       {KC_TRNS,   KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS}
     }
 
@@ -154,15 +158,15 @@ const uint16_t PROGMEM fn_actions[] = {
   [FKEY] = ACTION_LAYER_TAP_KEY(FKEY, KC_D),
   [CURS] = ACTION_LAYER_TAP_KEY(CURS, KC_K),
   [SYMB] = ACTION_LAYER_TAP_KEY(SYMB, KC_L),
-  [OPBS] = ACTION_MODS_TAP_KEY(MOD_LALT, KC_BSPC),
-  [CMET] = ACTION_MODS_TAP_KEY(MOD_LGUI, KC_ENT),
+  [MOUSE] = ACTION_LAYER_TAP_KEY(MOUSE, KC_SCLN),
+  [OPET] = ACTION_MODS_TAP_KEY(MOD_LALT, KC_ENT),
+  [CMBS] = ACTION_MODS_TAP_KEY(MOD_LGUI, KC_BSPC),
   [SFSP] = ACTION_MODS_TAP_KEY(MOD_RSFT, KC_SPC),
-  [SFET] = ACTION_MODS_TAP_KEY(MOD_LSFT, KC_ENT),
-  [CTTB] = ACTION_MODS_TAP_KEY(MOD_LCTL, KC_TAB),
+  [OPDL] = ACTION_MODS_TAP_KEY(MOD_LALT, KC_DEL),
+  [CMTB] = ACTION_MODS_TAP_KEY(MOD_LGUI, KC_TAB),
   [CTES] = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_ESC),
   [CTET] = ACTION_MODS_TAP_KEY(MOD_RCTL, KC_ENT),
   [SFBS] = ACTION_MODS_TAP_KEY(MOD_LSFT, KC_BSPC),
-  [MOUSE] = ACTION_LAYER_TAP_KEY(MOUSE, KC_SCLN),
   [MS_U] = ACTION_MOUSEKEY(KC_MS_U), // mouse movement
   [MS_D] = ACTION_MOUSEKEY(KC_MS_D),
   [MS_L] = ACTION_MOUSEKEY(KC_MS_L),
@@ -187,3 +191,9 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt)
     bootloader();
   }
 }
+
+//static void layer_state_set(uint32_t state) {
+//    // ...
+//    clear_keyboard_but_mods(); // To avoid stuck keys
+//}
+
