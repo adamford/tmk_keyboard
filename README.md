@@ -10,6 +10,11 @@ In particular, take a look at the `keyboard/atreus` directory and its
 Quick Start
 -----------
 
+Finding the USB argument:
+$ ls /dev > /tmp/dev-off # run this while the device is unplugged
+$ ls /dev > /tmp/dev-on # run this while the device is in bootloader mode
+$ diff /tmp/dev-off /tmp/dev-on # this will show the device path
+
 Install `gcc-avr` and `avrdude`.
 
     $ cd keyboard/atreus
