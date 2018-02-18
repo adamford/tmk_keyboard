@@ -16,7 +16,7 @@ Finding the USB argument:
 Install `gcc-avr` and `avrdude`.
 
     $ cd keyboard/atreus
-    $ make upload KEYMAP=adam USB=/dev/cu.usbmodem14311
+    $ make upload KEYMAP=adam USB=/dev/cu.usbmodem1411
     # hit the reset key on your keyboard
 
 See `keyboard/atreus/README.md` for details.
