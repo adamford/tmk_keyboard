@@ -1,6 +1,6 @@
 /*
 This layout was created by Adam Ford.
-To compile: make clean && make KEYMAP=adam
+To compile: make clean && make KEYMAP=adamv2
 To upload: make upload KEYMAP=adam USB=/dev/cu.usbmodem14311
 Or use Avrodudess with the following settings:
   - Programmer: AVR109
